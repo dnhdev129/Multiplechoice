@@ -206,7 +206,38 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-            // Nội dung chính của trang
+            SizedBox(
+                height:
+                    20), // Khoảng cách trước container thông tin các khóa thi
+            // Container hiển thị thông tin các khóa thi
+            Container(
+              height: 200, // Chiều cao của container
+              padding: EdgeInsets.all(10), // Padding cho container
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal, // Cuộn ngang
+                child: Row(
+                  children: [
+                    _buildCourseInfoCard(
+                        'A1', 'assets/images/a1.jpg', 'Khóa thi A1'),
+                    SizedBox(width: 10), // Khoảng cách giữa các thẻ thông tin
+                    _buildCourseInfoCard(
+                        'A2', 'assets/images/a2.jpg', 'Khóa thi A2'),
+                    SizedBox(width: 10),
+                    _buildCourseInfoCard(
+                        'B1', 'assets/images/b1.jpg', 'Khóa thi B1'),
+                    SizedBox(width: 10),
+                    _buildCourseInfoCard(
+                        'B2', 'assets/images/b2.jpg', 'Khóa thi B2'),
+                    SizedBox(width: 10),
+                    _buildCourseInfoCard(
+                        'TOEIC', 'assets/images/toeic.jpg', 'Khóa thi TOEIC'),
+                    SizedBox(width: 10),
+                    _buildCourseInfoCard(
+                        'IELTS', 'assets/images/ielts.jpg', 'Khóa thi IELTS'),
+                  ],
+                ),
+              ),
+            ),
             SizedBox(height: 20), // Khoảng cách cho phần nội dung
             Center(
               child: _widgetOptions.elementAt(_selectedIndex),
@@ -271,6 +302,76 @@ class _HomePageState extends State<HomePage> {
             child: Text('Làm bài'), // Nội dung nút
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.blue, // Màu nền của nút
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // Hàm xây dựng Container thông tin khóa thi
+  Widget _buildCourseInfoCard(
+      String label, String imagePath, String description) {
+    return Container(
+      width: 150, // Chiều rộng của mỗi thẻ thông tin
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10), // Bo tròn góc
+        image: DecorationImage(
+          image: AssetImage(imagePath), // Thay đổi hình ảnh ở đây
+          fit: BoxFit.cover, // Đảm bảo hình ảnh phủ kín
+        ),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center, // Căn giữa theo chiều dọc
+        children: [
+          Text(
+            label, // Văn bản hiển thị
+            style: TextStyle(
+              color: Colors.white, // Màu chữ
+              fontSize: 20, // Kích thước chữ
+              fontWeight: FontWeight.bold, // Đậm
+              backgroundColor: Colors.black54, // Nền chữ
+            ),
+            textAlign: TextAlign.center, // Căn giữa
+          ),
+          SizedBox(height: 4), // Khoảng cách giữa tiêu đề và mô tả
+          Text(
+            description, // Mô tả
+            style: TextStyle(
+              color: Colors.white, // Màu chữ
+              fontSize: 14, // Kích thước chữ
+              backgroundColor: Colors.black54, // Nền chữ
+            ),
+            textAlign: TextAlign.center, // Căn giữa
+          ),
+          SizedBox(height: 10), // Khoảng cách trước các nút
+          // Nút "Thi Thử"
+          ElevatedButton(
+            onPressed: () {
+              // Logic cho nút "Thi Thử"
+              print('Thi Thử $label');
+            },
+            child: Text('Thi Thử'),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.blue, // Màu nền của nút
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+            ),
+          ),
+          SizedBox(height: 4), // Khoảng cách giữa các nút
+          // Nút "Đăng Ký Thi"
+          ElevatedButton(
+            onPressed: () {
+              // Logic cho nút "Đăng Ký Thi"
+              print('Đăng Ký Thi $label');
+            },
+            child: Text('Đăng Ký Thi'),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.green, // Màu nền của nút
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8.0),
               ),
